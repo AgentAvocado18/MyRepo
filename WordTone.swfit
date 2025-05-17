@@ -1,0 +1,9 @@
+import Foundation
+
+struct WordTone: Codable, Identifiable {
+    var id = UUID()
+    var word: String
+    var pitch: Float
+    var rate: Float
+    var volume: Float
+}

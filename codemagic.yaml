@@ -1,0 +1,18 @@
+workflows:
+  speechy-release:
+    name: Speechy Release Build
+    environment:
+      xcode: latest
+    scripts:
+      - name: Build .ipa for release
+        script: |
+          xcodebuild -project Speechy.xcodeproj \
+            -scheme Speechy \
+            -configuration Release \
+            -archivePath $CM_BUILD_DIR/Speechy.xcarchive archive
+          xcodebuild -exportArchive \
+            -archivePath $CM_BUILD_DIR/Speechy.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath $CM_BUILD_DIR/exported
+    artifacts:
+      - $CM_BUILD_DIR/exported/*.ipa
